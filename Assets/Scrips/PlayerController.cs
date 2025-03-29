@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -36,6 +37,10 @@ public class PlayerController : MonoBehaviour
         {
             _componentRigidbody2D.AddForce(Vector2.up * playerJumpStrength, ForceMode2D.Impulse);
             canDoubleJump = false;
+        }
+        if (playerLives <= 0)
+        {
+            SceneManager.LoadScene("LoseScreen");
         }
     }
     void FixedUpdate()
