@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,10 +11,17 @@ public class PlayerController : MonoBehaviour
     private float horizontal;
     Rigidbody2D _componentRigidbody2D;
     SpriteRenderer _componentSpriteRenderer;
+    public Image _HealBarr;
+    //Lose PopUp
+    public Image _LosePopUp;
+    public TextController _LoseTime;
+    //Win PopUp
+    public Image _WinPopUp;
+    public TextController _WinTime;
+    //
     bool canJump = false;
     bool canDoubleJump = false;
     public bool canChangeColor = true;
-    public int playerLives = 10;
     bool canBeDanmaged = true;
     float cooldown = 2;
 
@@ -26,6 +33,9 @@ public class PlayerController : MonoBehaviour
     public Color outCollision = Color.white;
     void Awake()
     {
+        Time.timeScale = 1;
+        _LosePopUp.gameObject.SetActive(false);
+        _WinPopUp.gameObject.SetActive(false);
         _componentRigidbody2D = GetComponent<Rigidbody2D>();
         _componentSpriteRenderer = GetComponent<SpriteRenderer>();
     }
@@ -41,9 +51,11 @@ public class PlayerController : MonoBehaviour
             _componentRigidbody2D.AddForce(Vector2.up * playerJumpStrength, ForceMode2D.Impulse);
             canDoubleJump = false;
         }
-        if (playerLives <= 0)
+        if (_HealBarr.fillAmount <= 0)
         {
-            SceneManager.LoadScene("LoseScreen");
+            _LosePopUp.gameObject.SetActive(true);
+            _LoseTime.TimerUpdate();
+            Time.timeScale = 0;
         }
         if (cooldown <= 0)
         {
@@ -78,17 +90,19 @@ public class PlayerController : MonoBehaviour
             canChangeColor = false;
             if (_SR.color != _componentSpriteRenderer.color && canBeDanmaged == true)
             {
-                playerLives = playerLives - 1;
+                _HealBarr.fillAmount = _HealBarr.fillAmount - 0.1f;
                 canBeDanmaged = false;
             }
         }
         if (collision.tag == "DeathZone")
         {
-            SceneManager.LoadScene("LoseScreen");
+            _HealBarr.fillAmount = 0;
         }
         if (collision.tag == "Goal")
         {
-            SceneManager.LoadScene("WinScreen");
+            _WinPopUp.gameObject.SetActive(true);
+            _WinTime.TimerUpdate();
+            Time.timeScale = 0;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -106,7 +120,7 @@ public class PlayerController : MonoBehaviour
             canChangeColor = false;
             if (_SR.color != _componentSpriteRenderer.color && canBeDanmaged == true)
             {
-                playerLives = playerLives - 1;
+                _HealBarr.fillAmount = _HealBarr.fillAmount - 0.1f;
                 canBeDanmaged = false;
             }
         }

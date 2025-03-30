@@ -26,4 +26,8 @@ public class ButtonController : MonoBehaviour
     {
         SceneManager.LoadScene(sceneToChange);
     }
+    public void CloseGame()
+    {
+        Application.Quit();
+    }
 }
