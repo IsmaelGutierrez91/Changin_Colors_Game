@@ -5,7 +5,10 @@ TagManager:
   serializedVersion: 3
   tags:
   - Ground
-  - Tramp
+  - Obstacle
+  - MobilePlatform
+  - DeathZone
+  - Goal
   layers:
   - Default
   - TransparentFX

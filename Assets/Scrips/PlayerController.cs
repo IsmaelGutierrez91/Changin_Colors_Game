@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class PlayerController : MonoBehaviour
     bool canDoubleJump = false;
     public bool canChangeColor = true;
     public int playerLives = 10;
+    bool canBeDanmaged = true;
+    float cooldown = 2;
 
     [Header("RayCast Modifications")]
     [SerializeField] Transform originPoint;
@@ -42,6 +45,12 @@ public class PlayerController : MonoBehaviour
         {
             SceneManager.LoadScene("LoseScreen");
         }
+        if (cooldown <= 0)
+        {
+            cooldown = 2;
+            canBeDanmaged = true;
+        }
+        cooldown = cooldown - Time.deltaTime;
     }
     void FixedUpdate()
     {
@@ -60,22 +69,51 @@ public class PlayerController : MonoBehaviour
 
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    private void OnTriggerStay2D(Collider2D collision)
     {
         SpriteRenderer _SR = collision.GetComponent<SpriteRenderer>();
-        if (collision.tag == "Tramp")
+        if (collision.tag == "Obstacle")
         {
             canChangeColor = false;
-            if (_SR.color != _componentSpriteRenderer.color)
+            if (_SR.color != _componentSpriteRenderer.color && canBeDanmaged == true)
             {
                 playerLives = playerLives - 1;
-
+                canBeDanmaged = false;
             }
+        }
+        if (collision.tag == "DeathZone")
+        {
+            SceneManager.LoadScene("LoseScreen");
+        }
+        if (collision.tag == "Goal")
+        {
+            SceneManager.LoadScene("WinScreen");
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Tramp")
+        if (collision.tag == "Obstacle")
+        {
+            canChangeColor = true;
+        }
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        SpriteRenderer _SR = collision.gameObject.GetComponent<SpriteRenderer>();
+        if (collision.gameObject.tag == "Obstacle")
+        {
+            canChangeColor = false;
+            if (_SR.color != _componentSpriteRenderer.color && canBeDanmaged == true)
+            {
+                playerLives = playerLives - 1;
+                canBeDanmaged = false;
+            }
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Obstacle")
         {
             canChangeColor = true;
         }
