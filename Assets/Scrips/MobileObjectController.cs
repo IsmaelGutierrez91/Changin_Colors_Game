@@ -16,11 +16,14 @@ public class MobileObjectController : MonoBehaviour
     Transform _componentTransfrom;
     SpriteRenderer _componentSpriteRenderer;
     BoxCollider2D _componentBoxCollider2D;
+
+    SpriteRenderer _PlayerSR;
     private void Awake()
     {
         _componentTransfrom = GetComponent<Transform>();
         _componentBoxCollider2D = GetComponent<BoxCollider2D>();
         _componentSpriteRenderer = GetComponent<SpriteRenderer>();
+        _PlayerSR = _Player.gameObject.GetComponent<SpriteRenderer>();
     }
     private void Update()
     {
@@ -42,7 +45,10 @@ public class MobileObjectController : MonoBehaviour
             directionY = -1;
         }
         //Position controller
-        _componentTransfrom.position = new Vector2(_componentTransfrom.position.x + directionX * objectSpeed * Time.deltaTime, _componentTransfrom.position.y + directionY * objectSpeed * Time.deltaTime);
+        if (_PlayerSR.color != _componentSpriteRenderer.color)
+        {
+            _componentTransfrom.position = new Vector2(_componentTransfrom.position.x + directionX * objectSpeed * Time.deltaTime, _componentTransfrom.position.y + directionY * objectSpeed * Time.deltaTime);
+        }
         //Collision modificator
         if (this.gameObject.name == "Obstacle")
         {
