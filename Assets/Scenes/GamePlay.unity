@@ -1947,6 +1947,10 @@ PrefabInstance:
       propertyPath: _LosePopUp
       value: 
       objectReference: {fileID: 1710622293}
+    - target: {fileID: 5449650842822028069, guid: c3afe3ae43a016248a3c29ca9d188235, type: 3}
+      propertyPath: playerJumpStrength
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7985433665068548180, guid: c3afe3ae43a016248a3c29ca9d188235, type: 3}
       propertyPath: m_Name
       value: Player
@@ -12641,6 +12645,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c1e7f5cc-4423-4af3-8b5d-d38ae120499a
     m_ActionName: 'Game/Jump[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1198820335}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnMovement
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c2b795d8-f01e-492e-9f08-cdab107ef098
+    m_ActionName: 'Game/HorizontalMovement[/Keyboard/a,/Keyboard/d]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Game

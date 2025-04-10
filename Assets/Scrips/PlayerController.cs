@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     SpriteRenderer _componentSpriteRenderer;
     public Image _HealBarr;
     bool canJump = false;
-    bool canDoubleJump = false;
+    //bool canDoubleJump = false; (falta corregir)
     public bool canChangeColor = true;
     bool canBeDanmaged = true;
     float cooldown = 2;
@@ -39,16 +39,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
-        /*
-        if (Input.GetKeyDown(KeyCode.Space) && canJump == true)
-        {
-            _componentRigidbody2D.AddForce(Vector2.up * playerJumpStrength, ForceMode2D.Impulse);
-        }
-        if (Input.GetKeyDown(KeyCode.Space) && canDoubleJump == true && canJump == false)
-        {
-            _componentRigidbody2D.AddForce(Vector2.up * playerJumpStrength, ForceMode2D.Impulse);
-            canDoubleJump = false;
-        }*/
         if (_HealBarr.fillAmount <= 0)
         {
             OnReachTheEndGame?.Invoke();
@@ -62,13 +52,13 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        _componentRigidbody2D.linearVelocity = new Vector2(horizontal * playerSpeed, _componentRigidbody2D.linearVelocity.y);
+        //_componentRigidbody2D.linearVelocity = new Vector2(horizontal * playerSpeed, _componentRigidbody2D.linearVelocity.y);
         RaycastHit2D hit = Physics2D.Raycast(originPoint.position, Vector2.down, rayCastLength, layerMask);
         if (hit.collider != null)
         {
             Debug.DrawRay(originPoint.position, Vector2.down * hit.distance, inCollision);
             canJump = true;
-            canDoubleJump = true;
+            //canDoubleJump = true;
         }
         else
         {
@@ -77,18 +67,23 @@ public class PlayerController : MonoBehaviour
 
         }
     }
+
+    public void OnMovement(InputAction.CallbackContext context)
+    {
+        float _horizontal = context.ReadValue<float>();
+        _componentRigidbody2D.linearVelocity = new Vector2(_horizontal * playerSpeed, _componentRigidbody2D.linearVelocity.y);
+    }
     public void OnJump(InputAction.CallbackContext context)
     {
-        Debug.Log($"Jumpeando {context.phase}");
         if (canJump == true)
         {
             _componentRigidbody2D.AddForce(Vector2.up * playerJumpStrength, ForceMode2D.Impulse);
         }
-        if (canDoubleJump == true && canJump == false)
+        /*if (canDoubleJump == true && canJump == false)
         {
             _componentRigidbody2D.AddForce(Vector2.up * playerJumpStrength, ForceMode2D.Impulse);
             canDoubleJump = false;
-        }
+        }*/
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
