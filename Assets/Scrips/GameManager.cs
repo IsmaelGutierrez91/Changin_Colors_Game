@@ -1,5 +1,8 @@
+using NUnit.Framework;
 using System;
+using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 
@@ -11,6 +14,17 @@ public class GameManager : MonoBehaviour
     float currentTime;
     int mins;
     int segs;
+    public int CurrentColorID;
+    public Color[] ColorArray = new Color[3];
+    public SpriteRenderer _PlayerSR;
+
+    private void Awake()
+    {
+        ColorArray[0] = Color.red;
+        ColorArray[1] = Color.blue;
+        ColorArray[2] = Color.green;
+        CurrentColorID = 0;
+    }
     void Update()
     {
         currentTime = currentTime + Time.deltaTime;
@@ -55,6 +69,30 @@ public class GameManager : MonoBehaviour
         else if (action == "DeathZone")
         {
             _PlayerLife.fillAmount = 0f;
+        }
+    }
+    public void SetNextColor(InputAction.CallbackContext context)
+    {
+        if (context.phase != InputActionPhase.Performed)
+        {
+            CurrentColorID = CurrentColorID + 1;
+            if (CurrentColorID > ColorArray.Length - 1)
+            {
+                CurrentColorID = 0;
+            }
+            _PlayerSR.color = ColorArray[CurrentColorID];
+        }
+    }
+    public void SetPrevColor(InputAction.CallbackContext context)
+    {
+        if (context.phase != InputActionPhase.Performed)
+        {
+            CurrentColorID = CurrentColorID - 1;
+            if (CurrentColorID < 0)
+            {
+                CurrentColorID = ColorArray.Length - 1;
+            }
+            _PlayerSR.color = ColorArray[CurrentColorID];
         }
     }
 

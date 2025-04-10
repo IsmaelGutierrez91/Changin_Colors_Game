@@ -427,9 +427,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1391b52d7f86f8c4ab342fc4f1ff5b1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Player: {fileID: 1198820336}
-  _player: {fileID: 1198820335}
-  sceneToChange: 
 --- !u!114 &20184895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3514,9 +3511,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1391b52d7f86f8c4ab342fc4f1ff5b1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Player: {fileID: 1198820336}
-  _player: {fileID: 1198820335}
-  sceneToChange: 
 --- !u!114 &396306511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5663,9 +5657,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1391b52d7f86f8c4ab342fc4f1ff5b1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Player: {fileID: 0}
-  _player: {fileID: 0}
-  sceneToChange: MainMenu
 --- !u!114 &639274866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7549,9 +7540,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1391b52d7f86f8c4ab342fc4f1ff5b1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Player: {fileID: 1198820336}
-  _player: {fileID: 1198820335}
-  sceneToChange: 
 --- !u!114 &944803373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10246,6 +10234,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1309001952}
   - component: {fileID: 1309001951}
+  - component: {fileID: 1309001953}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -10267,6 +10256,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _PlayerLife: {fileID: 1249023515}
   coinsRecolected: 0
+  CurrentColorID: 0
+  ColorArray:
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  _PlayerSR: {fileID: 1198820336}
 --- !u!4 &1309001952
 Transform:
   m_ObjectHideFlags: 0
@@ -10282,6 +10277,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1309001953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309001950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52087b896eecf7f4fa773834991aea31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1313257635
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12692,6 +12699,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: d52aa18a-249f-4724-915c-17cde4093e47
     m_ActionName: 'Game/DoubleJump[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1309001951}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SetNextColor
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ca707621-d127-4db1-b6ff-b3a17965d495
+    m_ActionName: 'Game/ChangeToNextColor[/Keyboard/rightArrow]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1309001951}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SetPrevColor
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f34b63bc-22a1-47dd-aa0f-40a76e36aea2
+    m_ActionName: 'Game/ChangeToPrevColor[/Keyboard/leftArrow]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Game
@@ -14168,9 +14207,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1391b52d7f86f8c4ab342fc4f1ff5b1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Player: {fileID: 0}
-  _player: {fileID: 0}
-  sceneToChange: GamePlay
 --- !u!114 &1952046701
 MonoBehaviour:
   m_ObjectHideFlags: 0

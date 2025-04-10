@@ -31,6 +31,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ChangeToNextColor",
+                    "type": "Button",
+                    "id": "ca707621-d127-4db1-b6ff-b3a17965d495",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ChangeToPrevColor",
+                    "type": "Button",
+                    "id": "f34b63bc-22a1-47dd-aa0f-40a76e36aea2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -38,17 +56,6 @@
                     "name": "",
                     "id": "415c96b5-6964-40b0-a658-66c6204ec252",
                     "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "5abd55bc-6043-4d89-aab9-0bf0e5e873d6",
-                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -97,6 +104,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "DoubleJump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "20463f0b-37ae-4595-9546-c1a6d5595a88",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeToNextColor",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8f1f83f1-b2c4-408d-b0fb-34220c7b5d25",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeToPrevColor",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

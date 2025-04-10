@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class ButtonController : MonoBehaviour
 {
-    [Header("Change Color Mechanic")]
+    /*[Header("Change Color Mechanic")]
     public SpriteRenderer _Player;
     public PlayerController _player;
     Image _componentImage;
@@ -29,5 +29,5 @@ public class ButtonController : MonoBehaviour
     public void CloseGame()
     {
         Application.Quit();
-    }
+    }*/
 }

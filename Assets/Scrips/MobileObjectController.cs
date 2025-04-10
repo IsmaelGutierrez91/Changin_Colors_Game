@@ -45,7 +45,7 @@ public class MobileObjectController : MonoBehaviour
             directionY = -1;
         }
         //Position controller
-        if (_PlayerSR.color != _componentSpriteRenderer.color)
+        if (_PlayerSR.color != _componentSpriteRenderer.color) //Time Control
         {
             _componentTransfrom.position = new Vector2(_componentTransfrom.position.x + directionX * objectSpeed * Time.deltaTime, _componentTransfrom.position.y + directionY * objectSpeed * Time.deltaTime);
         }

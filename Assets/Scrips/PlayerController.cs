@@ -38,8 +38,6 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-
-        horizontal = Input.GetAxisRaw("Horizontal");
         if (_HealBarr.fillAmount <= 0)
         {
             OnReachTheEndGame?.Invoke();
